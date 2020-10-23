@@ -1,0 +1,14 @@
+.searchRowContainer {
+    border: 1px black solid;
+    display: flex;
+    width: 400px;
+    height: 35px;
+    margin: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#searchRowTitle {
+    margin-left: 15px;
+}
