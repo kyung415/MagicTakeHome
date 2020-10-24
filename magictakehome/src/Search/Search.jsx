@@ -56,18 +56,25 @@ const Search = () => {
 
     var searchedResults
 
-    //Initial load
-    useEffect(async () => {
+    const getData = async() => {
         const locations = await getLocations()
         setSearchedList(locations)
+    }
+
+    //Initial load
+    useEffect(() => {
+        getData()
     }, [])
 
     //When typing in search bar, update the filtered list/search results.
     useEffect(() => {
-        console.log(searchedList)
         const filteredList = filterLocations(searchBarText, searchedList)
         setSearchRowLocations(filteredList)
     }, [searchBarText])
+
+    useEffect(()=> {
+        console.log('yo')
+    }, [searchRowLocations])
 
     return (
         <div>
