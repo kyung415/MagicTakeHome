@@ -58,13 +58,13 @@ const Home = (props) => {
     }
 
     return (
-        <div>
+        <div id='homeContainer'>
             <LocationContext.Provider value={{myLocations, addLocations, removeLocation}}>
-                <div><Search /></div>
-                <div id='mapAndItineraryContainer'>
-                    <div><Map /></div>
-                    <div><Itinerary /></div>
-                </div>
+                    <div id='homeSearchContainer'><Search /></div>
+                    <div id='homeMapAndItineraryContainer'>
+                        <div><Map /></div>
+                        <div><Itinerary /></div>
+                    </div>
             </LocationContext.Provider>
         </div>
     )

@@ -14,7 +14,7 @@ const Itinerary = (props) => {
 
                 return (
                     <div id='itineraryContainer'>
-                        <div>My Itinerary</div>
+                        <div style={{textAlign:'center', marginTop:'10px', marginBottom: '10px'}}>My Itinerary</div>
                         {locations.map((location) => {
                             return (
                                 <div>

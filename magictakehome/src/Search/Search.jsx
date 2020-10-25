@@ -81,9 +81,9 @@ const Search = () => {
     }, [searchRowLocations])
 
     return (
-        <div>
+        <div id='searchBarContainer'>
             <Input placeholder="Search for movie locations" value={searchBarText} onChange={(e) => searchTyped(e, setSearchBarText)} style={{width: "400px"}}/>
-            <div>
+            <div id='searchResultsContainer'>
                 {searchBarText === ''
                     ? <div></div>
                     : searchRowLocations.map((result) => {

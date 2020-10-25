@@ -1,14 +1,36 @@
 .itineraryRowContainer {
     border: 1px black solid;
     display: flex;
-    width: 400px;
-    height: 35px;
+    width: 268px;
+    height: 100px;
     margin: auto;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-#itineraryRowTitle {
-    margin-left: 15px;
+#itineraryRowLocationInfo {
+    font-size: 10px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.itineraryRowTitle {
+    font-size: 10px;
+}
+
+.itineraryRowDataContainer {
+    background-color: lightgray;
+    height: 150px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.itineraryRowDataContainer h1 {
+    display: block;
+    font-size: 10px;
+    /* background-color: red; */
+    margin-bottom: -25px;
 }
