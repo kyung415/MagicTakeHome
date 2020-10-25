@@ -6,28 +6,30 @@ import SearchRow from './SearchRow'
 
 import './Search.css'
 
+const SF_FILM_APP_TOKEN = process.env.REACT_APP_SF_FILM_APP_TOKEN
+
 //GET request for all movie set locations.
 async function getLocations () {
     return await fetch('https://data.sfgov.org/resource/yitu-d5am.json', {
         method: 'GET',
         data: {
             limit: 5000,
-            app_token: 'D1s06FaoBcQOYysp2jmpT8xOU'
+            app_token: SF_FILM_APP_TOKEN
 
         }
     })
     .then(response => response.json())
     .then(data => {
 
-        //Get rid of duplicate locations using a Set.
-        var final = new Set();
+        var final = {}
         for (var i = 0; i < data.length; i++) {
-            if (data[i]['locations'] !== undefined) {
-                final.add(data[i]['locations'])
+            var location = data[i]['locations']
+            if (location !== undefined) {
+                final[location] = data[i]
             }
         }
-        let setValues = final.values()
-        return Array.from(setValues)
+
+        return final
     })
     .catch(error => console.log(error))
 }
@@ -54,11 +56,13 @@ const Search = () => {
     const [searchedList, setSearchedList] = useState([]) //unchange list of locations (global list)
     const [searchRowLocations, setSearchRowLocations] = useState([]) //filtered list of locations
 
-    var searchedResults
-
     const getData = async() => {
         const locations = await getLocations()
-        setSearchedList(locations)
+        const keys = Object.keys(locations)
+
+        //Cache SF Film Location Data
+        localStorage.setItem('locations', JSON.stringify(locations))
+        setSearchedList(keys)
     }
 
     //Initial load

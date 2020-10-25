@@ -9,12 +9,13 @@ const Itinerary = (props) => {
     return (
         <LocationContext.Consumer>
             {({myLocations}) => {
-                console.log(myLocations)
+
+                var locations = Object.keys(myLocations)
+
                 return (
                     <div id='itineraryContainer'>
                         <div>My Itinerary</div>
-                        {myLocations.map((location) => {
-                            console.log(location)
+                        {locations.map((location) => {
                             return (
                                 <div>
                                     <ItineraryRow location={location} />

@@ -1,0 +1,8 @@
+#mapAndItineraryContainer {
+    height: 400px;
+    width: 1000px;
+    margin: auto;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}

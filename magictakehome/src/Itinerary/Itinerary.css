@@ -1,3 +1,6 @@
 #itineraryContainer {
-    margin-top: 25px;
+    height: 400px;
+    width: 200px;
+    border: 1px solid black;
+    overflow: scroll;
 }

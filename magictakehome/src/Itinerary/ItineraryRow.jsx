@@ -5,26 +5,20 @@ import LocationContext from '../LocationContext'
 
 import './ItineraryRow.css'
 
-function deleteLocation (deleteLocation, myLocations, changeLocations) {
-    // console.log(newLocation)
-    console.log(myLocations)
-    var temp = myLocations.splice(0, myLocations.length)
-
-    var index = temp.indexOf(deleteLocation)
-    temp.splice(index, 1)
-    
-    changeLocations(temp)
+function deleteLocation (deleteLocation, removeLocation) {
+    removeLocation(deleteLocation)
 }
 
 const ItineraryRow = (props) => {
     return (
         <LocationContext.Consumer>
-            {({myLocations, changeLocations}) => {
+            {({myLocations, removeLocation}) => {
+                
                 return (
                     <div className='itineraryRowContainer'>
                         <div id='itineraryRowTitle'>{props.location}</div>
                         <div id='itineraryRowButtonContainer'>
-                            <Button icon='remove' size='mini' color='red' onClick={() => deleteLocation(props.location, myLocations, changeLocations)}></Button>
+                            <Button icon='remove' size='mini' color='red' onClick={() => deleteLocation(props.location, removeLocation)}></Button>
                         </div>
                     </div>
                 )
