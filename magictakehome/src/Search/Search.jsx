@@ -67,7 +67,14 @@ const Search = () => {
 
     //Initial load
     useEffect(() => {
-        getData()
+        if (localStorage.getItem('locations') === null) {
+            getData()
+        }
+        else {
+            const locations = JSON.parse(localStorage.getItem('locations'))
+            const keys = Object.keys(locations)
+            setSearchedList(keys)
+        }
     }, [])
 
     //When typing in search bar, update the filtered list/search results.

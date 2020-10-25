@@ -14,8 +14,13 @@ const Home = (props) => {
     const [myLocations, setMyLocations] = useState({})
 
     useEffect(() => {
-        console.log('hello')
-    }, [myLocations])
+        if (localStorage.getItem('myLocations') === null) {
+            localStorage.setItem('myLocations', JSON.stringify({}))
+        }
+        else {
+            setMyLocations(JSON.parse(localStorage.getItem('myLocations')))
+        }
+    }, [])
 
     const getLatAndLong = async(location) => {
         const splitLocation = location.split()
@@ -47,6 +52,7 @@ const Home = (props) => {
 
             temp[location] = locationData[location]
             console.log(temp[location])
+            localStorage.setItem('myLocations', JSON.stringify(temp))
             setMyLocations(temp)
         }
     }
