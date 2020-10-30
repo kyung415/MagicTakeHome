@@ -33,16 +33,27 @@ const Search = () => {
         return filteredLocations
     }
 
-    //On change function for typing in search bar.
+    //On change function for typing in search bar. Show overlay when typing in search bar.
     const searchTyped = (e, setSearchBarText) => {
         let body = document.getElementById('searchResultsContainer')
+        let overlay = document.getElementById('overlay')
         if (e.target.value === '') {
             body.style.display = 'none';
+            overlay.style.display = 'none';
         }
         else {
             body.style.display = 'block';
+            overlay.style.display = 'block';
         }
         setSearchBarText(e.target.value)
+    }
+
+    //Click transparent overlay to collapse search result container. Click outside of search results to close it.
+    const overlayClick = () => {
+        let overlay = document.getElementById('overlay')
+        let body = document.getElementById('searchResultsContainer')
+        overlay.style.display = 'none';
+        body.style.display = 'none';
     }
 
     //Initial load
@@ -67,13 +78,14 @@ const Search = () => {
 
     return (
         <div id='searchBarContainer'>
+            <div id='overlay' onClick={() => overlayClick()}></div>
             <Input placeholder="Search for movie locations" value={searchBarText} onChange={(e) => searchTyped(e, setSearchBarText)} style={{width: "75%"}}/>
             <div id='searchResultsContainer'>
                 {searchBarText === ''
                     ? <div></div>
                     : searchRowLocations.map((result) => {
                         return (
-                            <div key={result}>
+                            <div key={result+'_s'}>
                                 <SearchRow location={result} />
                             </div>
                         )

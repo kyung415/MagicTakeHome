@@ -24,7 +24,6 @@ const Home = (props) => {
         var temp = {...myLocations}
 
         const googleMapsLocationsInfo = await getLatAndLong(location)
-        console.log(googleMapsLocationsInfo)
 
         //Not enough information was found.
         if (googleMapsLocationsInfo.status !== 'OK') {
@@ -35,7 +34,7 @@ const Home = (props) => {
             locationData[location]['coordinates'] = googleMapsLocationsInfo['results'][0]['geometry']['location']
 
             temp[location] = locationData[location]
-            console.log(temp[location])
+
             localStorage.setItem('myLocations', JSON.stringify(temp))
             setMyLocations(temp)
         }

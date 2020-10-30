@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import GoogleMapReact from 'google-map-react';
-import { DimmerDimmable } from 'semantic-ui-react';
 
 import './Map.css'
 
@@ -19,7 +18,7 @@ const Map = () => {
         zoom: 12
     };
 
-    const MapPin = ({ }) => <div data-testid='mapPin'><i className='large map marker alternate icon'></i></div>;
+    const MapPin = () => <div data-testid='mapPin'><i className='large map marker alternate icon'></i></div>;
 
     return (
         <LocationContext.Consumer>
@@ -33,11 +32,12 @@ const Map = () => {
                             defaultZoom={defaultProps.zoom}
                         >
                             {locations.map((location) => {
-                                console.log(location)
+
                                 return (
                                     <MapPin
                                         lat={myLocations[location]['coordinates']['lat']}
                                         lng={myLocations[location]['coordinates']['lng']}
+                                        key={location+'_mp'}
                                     />
                                 )
                             })}

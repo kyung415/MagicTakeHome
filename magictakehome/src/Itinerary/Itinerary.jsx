@@ -19,7 +19,7 @@ const Itinerary = () => {
                             {locations.map((location) => {
                                 return (
                                     <div>
-                                        <ItineraryRow location={location} locationData={myLocations[location]} removeLocation={removeLocation} />
+                                        <ItineraryRow location={location} locationData={myLocations[location]} removeLocation={removeLocation} key={location+'_i'} />
                                     </div>
                                 )
                             })}

@@ -19,7 +19,7 @@ const SearchRow = (props) => {
         addLocations(newLocation)
     }
 
-    const removeLocation = (location, removeLocations) => {
+    const removeOldLocation = (location, removeLocations) => {
         removeLocations(location)
     }
 
@@ -34,7 +34,7 @@ const SearchRow = (props) => {
                         <div id='searchRowButtonContainer'>
                             {myLocations[locationTitle] === undefined
                             ? <Button icon='plus' size='mini' color='blue' onClick={() => addLocation(locationTitle, addLocations)} data-testid='addButton'></Button>
-                            : <Button icon='remove' size='mini' color='red' onClick={() => removeLocation(locationTitle, removeLocation)} data-testid='removeButton'></Button>
+                            : <Button icon='remove' size='mini' color='red' onClick={() => removeOldLocation(locationTitle, removeLocation)} data-testid='removeButton'></Button>
                             }
                         </div>
                     </div>

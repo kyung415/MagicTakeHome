@@ -1,8 +1,6 @@
 import React, {useState} from 'react'
 import { Button } from 'semantic-ui-react'
 
-import LocationContext from '../LocationContext'
-
 import './ItineraryRow.css'
 
 const ItineraryRowDataContainer = (props) => {
