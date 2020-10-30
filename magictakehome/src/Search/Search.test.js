@@ -42,3 +42,31 @@ test('typing in search bar renders the SearchBar rows', () => {
     })
     expect(screen.queryByTestId('searchRowTitle')).toBeNull()
 });
+
+test('test add button click', async () => {
+    api.getLocations.mockResolvedValueOnce(MockData)
+    var addLocations = jest.fn()
+    render(<LocationContext.Provider value={{addLocations: addLocations, myLocations: {'555 Market St.': MockData['555 Market St.']}}}><Search /></LocationContext.Provider>)
+
+    const input = screen.getByPlaceholderText('Search for movie locations')
+
+    fireEvent.change(input, {target: {value: '5'}})
+    const button = screen.getByTestId('addButton')
+    fireEvent.click(button)
+
+    expect(addLocations).toHaveBeenCalledTimes(1)
+});
+
+test('test remove button click', async () => {
+    api.getLocations.mockResolvedValueOnce(MockData)
+    var removeLocation = jest.fn()
+    render(<LocationContext.Provider value={{removeLocation: removeLocation, myLocations: {'555 Market St.': MockData['555 Market St.']}}}><Search /></LocationContext.Provider>)
+    
+    const input = screen.getByPlaceholderText('Search for movie locations')
+
+    fireEvent.change(input, {target: {value: '5'}})
+    const button = screen.getByTestId('removeButton')
+    fireEvent.click(button)
+
+    expect(removeLocation).toHaveBeenCalledTimes(1)
+});

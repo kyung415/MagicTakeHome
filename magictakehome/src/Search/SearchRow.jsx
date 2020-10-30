@@ -33,8 +33,8 @@ const SearchRow = (props) => {
                         <div data-testid='searchRowTitle' id='searchRowTitle'>{locationTitle}</div>
                         <div id='searchRowButtonContainer'>
                             {myLocations[locationTitle] === undefined
-                            ? <Button icon='plus' size='mini' color='blue' onClick={() => addLocation(locationTitle, addLocations)}></Button>
-                            : <Button icon='remove' size='mini' color='red' onClick={() => removeLocation(locationTitle, removeLocation)}></Button>
+                            ? <Button icon='plus' size='mini' color='blue' onClick={() => addLocation(locationTitle, addLocations)} data-testid='addButton'></Button>
+                            : <Button icon='remove' size='mini' color='red' onClick={() => removeLocation(locationTitle, removeLocation)} data-testid='removeButton'></Button>
                             }
                         </div>
                     </div>

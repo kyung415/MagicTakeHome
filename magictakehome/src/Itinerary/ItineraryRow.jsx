@@ -69,7 +69,7 @@ const ItineraryRow = (props) => {
                     <div className='itineraryRowTitle'>{locationData['formatted_address']}</div>
                 </div>
                 <div id='itineraryRowButtonContainer'>
-                    <Button icon='remove' size='mini' color='red' onClick={(e) => deleteLocation(location, props.removeLocation, e)}></Button>
+                    <Button icon='remove' size='mini' color='red' onClick={(e) => deleteLocation(location, props.removeLocation, e)} data-testid='removeItineraryRow'></Button>
                 </div>
             </div>
             <div>
