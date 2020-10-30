@@ -1,5 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
+import { act } from 'react-dom/test-utils'
 
 import LocationContext from '../LocationContext'
 import Itinerary from './Itinerary'
@@ -7,7 +8,9 @@ import Itinerary from './Itinerary'
 import {MockData} from '../mock/MockData'
 
 test('renders the Itinerary Component', () => {
-    render(<LocationContext.Provider value={{myLocations: MockData, removeLocation: jest.fn()}}><Itinerary /></LocationContext.Provider>)
+    act(() => {
+        render(<LocationContext.Provider value={{myLocations: MockData, removeLocation: jest.fn()}}><Itinerary /></LocationContext.Provider>)
+    })
     screen.getByTestId('itineraryContainer')
 })
 
