@@ -14,8 +14,9 @@ const Search = () => {
 
     const [searchBarText, setSearchBarText] = useState('') //state for text in search bar.
     const [searchedList, setSearchedList] = useState([]) //unchange list of locations (global list)
-    const [searchRowLocations, setSearchRowLocations] = useState([]) //filtered list of locations
+    const [searchRowLocations, setSearchRowLocations] = useState([]) //filtered list of locations. Used for search results.
 
+    //Gather SF Film data from API and cache the data.
     const getData = async() => {
         const locations = await getLocations()
         const keys = Object.keys(locations)
@@ -25,18 +26,25 @@ const Search = () => {
         setSearchedList(keys)
     }
 
-    //Filter locations from all location list using the searchbar text. Used when search bar text is changed.
-    const filterLocations = (s, locationsList) => {
-        const filteredLocations = locationsList.filter(function(x) {
+    /*
+        Params: s: String
+        -Filter locations from all location list (searchedList) using the searchbar text. Used when search bar text is changed.
+    */
+    const filterLocations = (s) => {
+        const filteredLocations = searchedList.filter(function(x) {
             return s === x.substr(0, s.length).toLowerCase()
         })
         return filteredLocations
     }
 
-    //On change function for typing in search bar. Show overlay when typing in search bar.
+    /*
+        Params: e: target, setSearchBarText: function
+        -On change function for typing in search bar. Show overlay when typing in search bar.
+    */
     const searchTyped = (e, setSearchBarText) => {
         let body = document.getElementById('searchResultsContainer')
         let overlay = document.getElementById('overlay')
+
         if (e.target.value === '') {
             body.style.display = 'none';
             overlay.style.display = 'none';
@@ -72,14 +80,16 @@ const Search = () => {
 
     //When typing in search bar, update the filtered list/search results.
     useEffect(() => {
-        const filteredList = filterLocations(searchBarText, searchedList)
+        const filteredList = filterLocations(searchBarText)
         setSearchRowLocations(filteredList)
     }, [searchBarText])
 
     return (
         <div id='searchBarContainer'>
             <div id='overlay' onClick={() => overlayClick()}></div>
+            
             <Input placeholder="Search for movie locations" value={searchBarText} onChange={(e) => searchTyped(e, setSearchBarText)} style={{width: "75%"}}/>
+            
             <div id='searchResultsContainer'>
                 {searchBarText === ''
                     ? <div></div>

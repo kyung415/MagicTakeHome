@@ -6,19 +6,24 @@ import LocationContext from '../LocationContext'
 import 'semantic-ui-css/semantic.min.css';
 import './SearchRow.css'
 
-
-//TODO: Change button color when location is already added to the itinerary.
-
 /*
+    props: location: String
     Search Bar searched results row.
-    Shows Location title and an + icon button.
+    Shows Location title and an + icon button/ x icon button.
 */
 const SearchRow = (props) => {
 
+    /*
+        Params: newLocation: String, addLocations: function
+        - Add new location to Itinerary List. Calls Home addLocations function.
+    */
     const addLocation = (newLocation, addLocations) => {    
         addLocations(newLocation)
     }
-
+    /*
+        Params: newLocation: String, removeLocations: function
+        - Removes old location from Itinerary List. Calls Home removeLocation function.
+    */
     const removeOldLocation = (location, removeLocations) => {
         removeLocations(location)
     }

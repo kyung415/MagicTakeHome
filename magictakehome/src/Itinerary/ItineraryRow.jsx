@@ -3,6 +3,7 @@ import { Button } from 'semantic-ui-react'
 
 import './ItineraryRow.css'
 
+//Additional Itinerary Information Component. Shows when Itinerary Row is clicked.
 const ItineraryRowDataContainer = (props) => {
     const data = props.locationData
 
@@ -13,6 +14,8 @@ const ItineraryRowDataContainer = (props) => {
     const releaseYear = (data['release_year'] !== undefined) ? data['release_year'] : 'Not available'
     const writer = (data['writer'] !== undefined) ? data['writer'] : 'Not available'
     
+
+    //SF Film API returns three actors, but there not always three actors. Some are empty strings.
     var actors = []
     for (var i = 1; i < 4; i++) {
         let actor = data['actor_'+i]
@@ -42,11 +45,19 @@ const ItineraryRow = (props) => {
     const locationData = props.locationData
     const location = props.location
 
+    /*
+        Params: deleteLocation: String, removeLocation: function, e: target
+        -Calls Home removeLocation function.
+    */
     const deleteLocation = (deleteLocation, removeLocation, e) => {
         e.stopPropagation()
         removeLocation(deleteLocation)
     }
-    
+
+    /*
+        Params: showInfo: Boolean, setShowInfo: function
+        -Toggles ItineraryRowDataContainer component open and closed.
+    */
     const showLocationInfo = (showInfo, setShowInfo) => {
         if (showInfo) {
             setShowInfo(false)

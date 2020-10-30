@@ -7,9 +7,10 @@ import LocationContext from '../LocationContext'
 import {getLatAndLong} from '../api/GoogleMaps'
 import './Home.css'
 
-const Home = (props) => {
+const Home = () => {
     const [myLocations, setMyLocations] = useState({})
 
+    //Initialize myLocations in cache if null or set local myLocations object to the cached data.
     useEffect(() => {
         if (localStorage.getItem('myLocations') === null) {
             localStorage.setItem('myLocations', JSON.stringify({}))
@@ -19,13 +20,17 @@ const Home = (props) => {
         }
     }, [])
 
+    /*
+        Params: location: String
+        -Adds location to myLocations. Will add location to Itinerary List and Map.
+    */
     async function addLocations (location) {
         const locationData = JSON.parse(localStorage.getItem('locations'))
         var temp = {...myLocations}
 
         const googleMapsLocationsInfo = await getLatAndLong(location)
 
-        //Not enough information was found.
+        //No Google Map data was found for the targeted location.
         if (googleMapsLocationsInfo.status !== 'OK') {
             alert('Could not find information about location!')
         }
@@ -40,6 +45,10 @@ const Home = (props) => {
         }
     }
 
+    /*
+        Params: location: String
+        -Removes location from myLocations. Will remove location from Itinerary List and Map.
+    */
     function removeLocation (location) {
         var temp = {...myLocations}
         delete temp[location]

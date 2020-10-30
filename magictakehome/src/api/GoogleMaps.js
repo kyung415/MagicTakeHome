@@ -1,6 +1,9 @@
 const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 
-//GET the latitude and longitude of the newly added location of your itinerary.
+/*
+    Params: location: String
+    -GET the latitude and longitude of the newly added location of your itinerary.
+*/
 export async function getLatAndLong(location) {
     const splitLocation = location.split()
     const locationPlus = splitLocation.join('+')

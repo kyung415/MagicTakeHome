@@ -5,6 +5,9 @@ import LocationContext from '../LocationContext'
 
 import './Itinerary.css'
 
+/*
+    Itinerary Component
+*/
 const Itinerary = () => {
     return (
         <LocationContext.Consumer>
