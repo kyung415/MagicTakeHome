@@ -15,6 +15,7 @@ npm -v
 npm install
 npm start
 ```
+Runs on localhost:3000
 
 ## APIs used
 ### Google Maps
@@ -32,3 +33,7 @@ REACT_APP_SF_FILM_APP_TOKEN=
 ```
 npm run test
 ```
+
+## Additional Features
+* Clicking Itinerary Entry shows additional movie information about the film location.
+* Can remove Itinerary Entries in search bar results.
