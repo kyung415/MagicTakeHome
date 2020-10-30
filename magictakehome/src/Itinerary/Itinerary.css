@@ -2,5 +2,13 @@
     height: 400px;
     width: 265px;
     border: 1px solid black;
-    overflow: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#itineraryScroll {
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
 }

@@ -5,23 +5,25 @@ import LocationContext from '../LocationContext'
 
 import './Itinerary.css'
 
-const Itinerary = (props) => {
+const Itinerary = () => {
     return (
         <LocationContext.Consumer>
-            {({myLocations}) => {
+            {({myLocations, removeLocation}) => {
 
                 var locations = Object.keys(myLocations)
 
                 return (
-                    <div id='itineraryContainer'>
+                    <div id='itineraryContainer' data-testid='itineraryContainer'>
                         <div style={{textAlign:'center', marginTop:'10px', marginBottom: '10px'}}>My Itinerary</div>
-                        {locations.map((location) => {
-                            return (
-                                <div>
-                                    <ItineraryRow location={location} />
-                                </div>
-                            )
-                        })}
+                        <div id='itineraryScroll'>
+                            {locations.map((location) => {
+                                return (
+                                    <div>
+                                        <ItineraryRow location={location} locationData={myLocations[location]} removeLocation={removeLocation} />
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
                 )
             }}

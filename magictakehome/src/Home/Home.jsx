@@ -1,14 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Search from '../Search/Search'
 import Itinerary from '../Itinerary/Itinerary'
 import Map from '../Map/Map'
 
 import LocationContext from '../LocationContext'
-import { useEffect } from 'react'
-
+import {getLatAndLong} from '../api/GoogleMaps'
 import './Home.css'
-
-const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 
 const Home = (props) => {
     const [myLocations, setMyLocations] = useState({})
@@ -21,19 +18,6 @@ const Home = (props) => {
             setMyLocations(JSON.parse(localStorage.getItem('myLocations')))
         }
     }, [])
-
-    const getLatAndLong = async(location) => {
-        const splitLocation = location.split()
-        const locationPlus = splitLocation.join('+')
-        var uri = `https://maps.googleapis.com/maps/api/geocode/json?address=${locationPlus}+San+Francisco,+CA&key=${GOOGLE_MAPS_API_KEY}`
-        var response = await fetch(uri)
-                    .then(response => response.json())
-                    .then(data => {
-                        return data
-                    })
-                    .catch(error => console.log(error))
-        return response
-    }
 
     async function addLocations (location) {
         const locationData = JSON.parse(localStorage.getItem('locations'))
@@ -60,17 +44,18 @@ const Home = (props) => {
     function removeLocation (location) {
         var temp = {...myLocations}
         delete temp[location]
+        localStorage.setItem('myLocations', JSON.stringify(temp))
         setMyLocations(temp)
     }
 
     return (
-        <div id='homeContainer'>
+        <div id='homeContainer' data-testid='homeContainer'>
             <LocationContext.Provider value={{myLocations, addLocations, removeLocation}}>
-                    <div id='homeSearchContainer'><Search /></div>
-                    <div id='homeMapAndItineraryContainer'>
-                        <div><Map /></div>
-                        <div><Itinerary /></div>
-                    </div>
+                <div id='homeSearchContainer'><Search /></div>
+                <div id='homeMapAndItineraryContainer'>
+                    <div><Map /></div>
+                    <div><Itinerary /></div>
+                </div>
             </LocationContext.Provider>
         </div>
     )

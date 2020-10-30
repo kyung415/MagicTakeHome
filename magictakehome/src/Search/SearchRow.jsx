@@ -19,10 +19,10 @@ function addLocation (newLocation, addLocations) {
 const SearchRow = (props) => {
     return (
         <LocationContext.Consumer>
-            {({myLocations, addLocations}) => {
+            {({addLocations}) => {
                 return (
                     <div className='searchRowContainer'>
-                        <div id='searchRowTitle'>{props.location}</div>
+                        <div data-testid='searchRowTitle' id='searchRowTitle'>{props.location}</div>
                         <div id='searchRowButtonContainer'>
                             <Button icon='plus' size='mini' color='blue' onClick={() => addLocation(props.location, addLocations)}></Button>
                         </div>
